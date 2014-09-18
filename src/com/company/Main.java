@@ -20,7 +20,6 @@ public class Main {
 
     public static void main(String[] args) throws IOException, ClassNotFoundException {
 	// write your code here
-        String[] tmp = {"15023"};
-        MyServer.main(tmp);
+
     }
 }

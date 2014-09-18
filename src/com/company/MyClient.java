@@ -13,7 +13,7 @@ public class MyClient {
         File transferFile = new File(path);
 
         final int prefSize = 1024;
-        byte [] byteArray = new byte [prefSize];
+        byte[] byteArray = new byte [prefSize];
 
         BufferedInputStream bin = new BufferedInputStream(new FileInputStream(transferFile));
 
