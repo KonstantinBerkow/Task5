@@ -1,7 +1,6 @@
 package com.company;
 
-import java.io.File;
-import java.io.Serializable;
+import java.io.*;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -82,6 +81,35 @@ public abstract class FileSystemEntry implements Serializable {
                 printFSE(aTmp, offset + 1, offsetCharacters);
             }
         }
+    }
+
+    /**
+     * This static method saves serialized FileSystemEntry at given destination.
+     *
+     * @param fse FileSystemEntry object to save.
+     * @param destination Path with name of output file.
+     * @throws IOException
+     */
+    public static void saveToFile(FileSystemEntry fse, String destination) throws IOException {
+        FileOutputStream fos = new FileOutputStream(destination);
+        ObjectOutputStream oos = new ObjectOutputStream(fos);
+        oos.writeObject(fse);
+        oos.flush();
+        oos.close();
+    }
+
+    /**
+     * This static method allows easily load saved FileSystemEntry objects from files.
+     *
+     * @param destination path to file where ONE FileSystemEntry object saved.
+     * @return new instance of FileSystemEntry.
+     * @throws IOException
+     * @throws ClassNotFoundException
+     */
+    public static FileSystemEntry getFromFile(String destination) throws IOException, ClassNotFoundException {
+        FileInputStream fis = new FileInputStream(destination);
+        ObjectInputStream oin = new ObjectInputStream(fis);
+        return (FileSystemEntry) oin.readObject();
     }
 
     /**
